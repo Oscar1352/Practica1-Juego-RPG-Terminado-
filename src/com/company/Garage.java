@@ -2,18 +2,26 @@ package com.company;
 import java.util.Scanner;
 
 public class Garage {
-    Usuario carro = new Usuario();
-    Carros carros = new Carros();
+
+    //Colores
     String ANSI_RESET = "\u001B[0m";
     String ANSI_RED = "\u001B[31m";
     String ANSI_GREEN = "\u001B[32m";
     String ANSI_YELLOW = "\u001B[33m";
     String ANSI_BLANCO_NEGRITA = "\033[2;47;30m";
     String ANSI_BLANCO_SUBRAYADO = "\033[4;47;30m";
+
+    //Llamo a mis clases
+    Usuario carro = new Usuario();
+    Carros carros = new Carros();
+
+
     public void Garage(){
         Menú();
 
     }
+
+    //Menu Principal
     public void Menú(){
         int Opcion;
         Usuario usuario = new Usuario();
@@ -28,9 +36,11 @@ public class Garage {
         System.out.println("6.Comprar otro vehículo");
         System.out.println("7.Cambiar de vehiculo");
         System.out.println("8.Volver al menú principal");
+        do{
         System.out.print(ANSI_BLANCO_SUBRAYADO+"Ingrese su elección:"+ ANSI_RESET+" ");
         Scanner opcion = new Scanner(System.in);
         Opcion = opcion.nextInt();
+        }while(Opcion<1 || Opcion>8);
         switch (Opcion){
             case 1:
                 MejorarPotencia();
@@ -54,7 +64,7 @@ public class Garage {
                     CambiarCarro();
                 break;
                 case 8:
-                    Practica1 Menu1= new Practica1();
+                    JUEGOEJECUTABLE Menu1= new JUEGOEJECUTABLE();
                     Menu1.menu();
                     System.out.println(ANSI_RED+ "\n\t\t\t\t\t\tRegresaremos al menú" + ANSI_RESET);
                     System.out.println("\t\t\tACTIVIDAD FINALIZADA \t\t\tOro="+usuario.getgoro()+" Gemas="+usuario.getgemas());
@@ -62,9 +72,7 @@ public class Garage {
         }
     }
 
-
-
-        //Funciones
+    //Metodos de mi menu
     public void MejorarPotencia(){
         int gemas=carro.getgemas();
         double oro= carro.getgoro();
@@ -421,6 +429,7 @@ public class Garage {
                         System.out.println("\t\tCantidad de gemas= "+carro.getgemas());
                         System.out.println("\nActualmente tiene: "+carros.getgasolina()+" galones");
                         cantidad=gasolina- carros.getgasolina();
+                        carro.setgasolinacomprada(cantidad);
                         precio=cantidad*2.5;
                         System.out.println("Usted debe echar: "+cantidad+" galones de gasolina a un total de "+
                                 precio+" monedas de oro");
@@ -442,6 +451,7 @@ public class Garage {
                                             System.out.println("\nEscoogiste llenar el tanque");
                                             carros.setgasolina(100);
                                             carro.setoro((int) (oro-precio));
+                                            carro.setorogastado(oro-precio);
                                             System.out.println("Oro Restante= "+carro.getgoro());
                                             System.out.println("\n\t\t\t\t\t\t"+ANSI_BLANCO_NEGRITA+"ACTUALIZACION"+ANSI_RESET);
                                             carros.Carro1();
@@ -503,6 +513,8 @@ public class Garage {
                                             System.out.println("\nEscoogiste llenar el tanque");
                                             carros.setgasolina(100);
                                             carro.setoro((int) (oro-precio));
+                                            carro.setorogastado(oro-precio);
+                                            carro.setgasolinacomprada(cantidad);
                                             System.out.println("Oro Restante= "+carro.getgoro());
                                             System.out.println("\n\t\t\t\t\t\t"+ANSI_BLANCO_NEGRITA+"ACTUALIZACION"+ANSI_RESET);
                                             carros.Carro2();
@@ -564,6 +576,8 @@ public class Garage {
                                             System.out.println("\nEscoogiste llenar el tanque");
                                             carros.setgasolina(100);
                                             carro.setoro((int) (oro-precio));
+                                            carro.setorogastado(oro-precio);
+                                            carro.setgasolinacomprada(cantidad);
                                             System.out.println("Oro Restante= "+carro.getgoro());
                                             System.out.println("\n\t\t\t\t\t\t"+ANSI_BLANCO_NEGRITA+"ACTUALIZACION"+ANSI_RESET);
                                             carros.Carro3();
@@ -633,6 +647,7 @@ public class Garage {
                                         else {
                                             System.out.println("\nEscogiste las llantas de Calidad Baja");
                                             carros.setLlantas("Calidad Baja");
+                                            carros.setcoellantas(2);
                                             carro.setgemas(gemas-25);
                                             System.out.println("Gemas Restantes= "+carro.getgemas());
                                             System.out.println("\n\t\t\t\t\t\t"+ANSI_BLANCO_NEGRITA+"ACTUALIZACION"+ANSI_RESET);
@@ -655,6 +670,7 @@ public class Garage {
                                         else {
                                             System.out.println("\nEscogiste las llantas de Calidad Media");
                                             carros.setLlantas("Calidad Media");
+                                            carros.setcoellantas(3);
                                             carro.setgemas(gemas-50);
                                             System.out.println("Gemas Restantes= "+carro.getgemas());
                                             System.out.println("\n\t\t\t\t\t\t"+ANSI_BLANCO_NEGRITA+"ACTUALIZACION"+ANSI_RESET);
@@ -678,6 +694,7 @@ public class Garage {
                                             System.out.println("\nEscogiste las llantas de Calidad Altaa");
                                             carros.setLlantas("Calidad Altaa");
                                             carro.setgemas(gemas-75);
+                                            carros.setcoellantas(5);
                                             System.out.println("Gemas Restantes= "+carro.getgemas());
                                             System.out.println("\n\t\t\t\t\t\t"+ANSI_BLANCO_NEGRITA+"ACTUALIZACION"+ANSI_RESET);
                                             carros.Carro1();
@@ -737,6 +754,7 @@ public class Garage {
                                             System.out.println("\nEscogiste las llantas de Calidad Baja");
                                             carros.setLlantas("Calidad Baja");
                                             carro.setgemas(gemas-25);
+                                            carros.setcoellantas(2);
                                             System.out.println("Gemas Restantes= "+carro.getgemas());
                                             System.out.println("\n\t\t\t\t\t\t"+ANSI_BLANCO_NEGRITA+"ACTUALIZACION"+ANSI_RESET);
                                             carros.Carro2();
@@ -759,6 +777,7 @@ public class Garage {
                                             System.out.println("\nEscogiste las llantas de Calidad Media");
                                             carros.setLlantas("Calidad Media");
                                             carro.setgemas(gemas-50);
+                                            carros.setcoellantas(3);
                                             System.out.println("Gemas Restantes= "+carro.getgemas());
                                             System.out.println("\n\t\t\t\t\t\t"+ANSI_BLANCO_NEGRITA+"ACTUALIZACION"+ANSI_RESET);
                                             carros.Carro2();
@@ -781,6 +800,7 @@ public class Garage {
                                             System.out.println("\nEscogiste las llantas de Calidad Altaa");
                                             carros.setLlantas("Calidad Altaa");
                                             carro.setgemas(gemas-75);
+                                            carros.setcoellantas(5);
                                             System.out.println("Gemas Restantes= "+carro.getgemas());
                                             System.out.println("\n\t\t\t\t\t\t"+ANSI_BLANCO_NEGRITA+"ACTUALIZACION"+ANSI_RESET);
                                             carros.Carro2();
@@ -840,6 +860,7 @@ public class Garage {
                                             System.out.println("\nEscogiste las llantas de Calidad Baja");
                                             carros.setLlantas("Calidad Baja");
                                             carro.setgemas(gemas-25);
+                                            carros.setcoellantas(2);
                                             System.out.println("Gemas Restantes= "+carro.getgemas());
                                             System.out.println("\n\t\t\t\t\t\t"+ANSI_BLANCO_NEGRITA+"ACTUALIZACION"+ANSI_RESET);
                                             carros.Carro3();
@@ -862,6 +883,7 @@ public class Garage {
                                             System.out.println("\nEscogiste las llantas de Calidad Media");
                                             carros.setLlantas("Calidad Media");
                                             carro.setgemas(gemas-50);
+                                            carros.setcoellantas(3);
                                             System.out.println("Gemas Restantes= "+carro.getgemas());
                                             System.out.println("\n\t\t\t\t\t\t"+ANSI_BLANCO_NEGRITA+"ACTUALIZACION"+ANSI_RESET);
                                             carros.Carro3();
@@ -884,6 +906,7 @@ public class Garage {
                                             System.out.println("\nEscogiste las llantas de Calidad Altaa");
                                             carros.setLlantas("Calidad Altaa");
                                             carro.setgemas(gemas-75);
+                                            carros.setcoellantas(5);
                                             System.out.println("Gemas Restantes= "+carro.getgemas());
                                             System.out.println("\n\t\t\t\t\t\t"+ANSI_BLANCO_NEGRITA+"ACTUALIZACION"+ANSI_RESET);
                                             carros.Carro3();
@@ -943,6 +966,7 @@ public class Garage {
                             String colorN=carros.getcolor();
                             Scanner motorN = new Scanner(System.in);
                             compra = motorN.nextInt();
+
                             switch (compra){
                                 case 1:
                                     if (oro>=20){
@@ -955,6 +979,7 @@ public class Garage {
                                             System.out.println("Escogiste el color Azul");
                                             carros.setcolor("Azul");
                                             carro.setoro((int) (oro-20));
+                                            carro.setorogastado(oro-20);
                                             System.out.println("Su Oro Restante= "+carro.getgoro());
                                             System.out.println("Sus nuevas características son: ");
                                             carros.Carro1();
@@ -977,6 +1002,7 @@ public class Garage {
                                             System.out.println("Escogiste el color Rojo");
                                             carros.setcolor("Rojo");
                                             carro.setoro((int) (oro-20));
+                                            carro.setorogastado(oro-20);
                                             System.out.println("Su Oro Restante= "+carro.getgoro());
                                             System.out.println("Sus nuevas características son: ");
                                             carros.Carro1();
@@ -999,6 +1025,7 @@ public class Garage {
                                             System.out.println("Escogiste el color Verde");
                                             carros.setcolor("Verde");
                                             carro.setoro((int) (oro-20));
+                                            carro.setorogastado(oro-20);
                                             System.out.println("Su Oro Restante= "+carro.getgoro());
                                             System.out.println("Sus nuevas características son: ");
                                             carros.Carro1();
@@ -1288,9 +1315,95 @@ public class Garage {
         }
 
     }
-    public void ComprarVehiculo(){}
-    public void CambiarCarro(){
-        System.out.println("Su vehiculo actual es: "+carro.getvehiculo());
+    public void ComprarVehiculo(){
+        System.out.println("Vehiculos actuales: ");
+         Arreglo arreglo= new Arreglo();
+         arreglo.Arreglo();
     }
+    public void CambiarCarro(){
+        Carros carros = new Carros();
+        System.out.println("Su vehiculo actual es: "+carro.getvehiculo());
+        String x=carro.getvehiculo();
+        int car;
+        if (x=="Ferrari"){
+            System.out.println("Su vehiculo actual es: "+carro.getvehiculo());
+            System.out.println("\nPuedes escoger: ");
+            System.out.print("1.  ");carros.Honda();
+            System.out.print("2.  ");carros.BMW();
+            System.out.print("3. REGRESAR A MENÚ\n");
+            do{
+            System.out.print(ANSI_BLANCO_SUBRAYADO+"Ingrese su opción:"+ANSI_RESET+" ");
+            Scanner Carro = new Scanner(System.in);
+                car = Carro.nextInt();
+            }while ( car < 1 || car > 3 );
+            switch (car){
+                case 1:
+                    carro.setvehiculo("Honda");
+                    System.out.println("Su vehiculo fue actualizado, voliendo a Garage");
+                    Garage();
+                    break;
+                case 2:
+                    carro.setvehiculo("BMW");
+                    System.out.println("Su vehiculo fue actualizado, voliendo a Garage");
+                    Garage();
+                    break;
+                case 3:
+                    Menú();
+                    break;
+            }
 
+        }
+        else if (x=="Honda"){
+            System.out.println("\nPuedes escoger: ");
+            System.out.print("1.  ");carros.Ferrari();
+            System.out.print("2.  ");carros.BMW();
+            System.out.print("3. REGRESAR A MENÚ\n");
+            do{
+                System.out.print(ANSI_BLANCO_SUBRAYADO+"Ingrese su opción:"+ANSI_RESET+" ");
+                Scanner Carro = new Scanner(System.in);
+                car = Carro.nextInt();
+            }while ( car < 1 || car > 3 );
+            switch (car){
+                case 1:
+                    carro.setvehiculo("Ferrari");
+                    System.out.println("Su vehiculo fue actualizado, voliendo a Garage");
+                    Garage();
+                    break;
+                case 2:
+                    carro.setvehiculo("BMW");
+                    System.out.println("Su vehiculo fue actualizado, voliendo a Garage");
+                    Garage();
+                    break;
+                case 3:
+                    Menú();
+                    break;
+            }
+            }
+        else if (x=="BMW"){
+            System.out.println("\nPuedes escoger: ");
+            System.out.print("1.  ");carros.Honda();
+            System.out.print("2.  ");carros.Ferrari();
+            System.out.print("3. REGRESAR A MENÚ\n");
+            do{
+                System.out.print(ANSI_BLANCO_SUBRAYADO+"Ingrese su opción:"+ANSI_RESET+" ");
+                Scanner Carro = new Scanner(System.in);
+                car = Carro.nextInt();
+            }while ( car < 1 || car > 3 );
+            switch (car){
+                case 1:
+                    carro.setvehiculo("Honda");
+                    System.out.println("Su vehiculo fue actualizado, voliendo a Garage");
+                    Garage();
+                    break;
+                case 2:
+                    carro.setvehiculo("Ferrari");
+                    System.out.println("Su vehiculo fue actualizado, voliendo a Garage");
+                    Garage();
+                    break;
+                case 3:
+                    Menú();
+                    break;
+            }
+        }
+    }
 }

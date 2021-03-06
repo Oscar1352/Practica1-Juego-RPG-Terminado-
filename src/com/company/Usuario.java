@@ -12,12 +12,20 @@ public class Usuario {
     //Atributos
     String Nombre;
     private static String Nickname;
-    int Edad;
+    private static int Edad;
     private static int gemas;
     private static double oro;
+    private static double orogastado;
     private static String vehiculo;
+    private static int CanRivales;
+    private static int gasgastado;
+    private static int gascomprado;
 
+    //Llamo mis clases
+    Carros carros= new Carros();
+    Pistas pistas= new Pistas();
 
+    //Establezco mi constructor
     public Usuario(String Nombre, String Nickname, int Edad){
         this.Nombre = Nombre;
         this.Nickname = Nickname;
@@ -26,7 +34,7 @@ public class Usuario {
     }
 
 
-    //Declaro gets y sets
+    //Establezco mis getters y setters de mis atributos para acceder a ellos y editarlos
     //Gemas
     public int getgemas()
     {
@@ -42,7 +50,7 @@ public class Usuario {
     {
         return this.oro;
     }
-    public void setoro(int oro)
+    public void setoro(double oro)
     {
         this.oro=oro;
     }
@@ -57,9 +65,58 @@ public class Usuario {
         this.vehiculo=vehiculo;
     }
 
+    //Rivales
+    public int getrivales()
+    {
+        return this.CanRivales;
+    }
+    public void setrivales(int CanRivales)
+    {
+        this.CanRivales=CanRivales;
+    }
+
+    //Nickname
+    public String getnickname()
+    {
+        return this.Nickname;
+    }
+    public void setnickname(String Nickname)
+    {
+        this.Nickname=Nickname;
+    }
+
+    //Nickname
+    public double getorogastado()
+    {
+        return this.orogastado;
+    }
+    public void setorogastado(double orogastado)
+    {
+        this.orogastado=orogastado;
+    }
+
+    //GasolinaGastada
+    public int getgasolinagastada()
+    {
+        return this.gasgastado;
+    }
+    public void setgasolinagastada(int gasgastado)
+    {
+        this.gasgastado=gasgastado;
+    }
+
+    //GasolinaComprado
+    public int getgasolinacomprada()
+    {
+        return this.gascomprado;
+    }
+    public void setgasolinacomprada(int gascomprado)
+    {
+        this.gascomprado=gascomprado;
+    }
 
 
-    //Usuario
+    //Establezco los atributos principales del Usuario
     public Usuario() {
 
     }
@@ -82,6 +139,7 @@ public class Usuario {
         System.out.print("Ingrese su Nickname: ");
         Scanner nom  = new Scanner(System.in);
         Nickname = Menu.nextLine();
+        setnickname(Nickname);
         System.out.print("Por Favor ingrese su edad: ");
         Scanner ed  = new Scanner(System.in);
         Edad = Menu.nextInt();
@@ -99,6 +157,18 @@ public class Usuario {
     }
     public static void Vehiculo(){
         System.out.print(" " +vehiculo);
+    }
+
+    //Establezco el movimiento del usuario en la competencia
+    public int MovimientoUsuario (){
+        int n1 = (int)(Math.random()*10)+1;
+        int n2 = (int)(Math.random()*5)+1;
+        int x = carros.getpotencia();
+        int y= carros.getcoellantas();
+        int a= pistas.getcoeficiente();
+        int z;
+        z=(x*n1) + a +(y*n2);
+        return z;
     }
 }
 

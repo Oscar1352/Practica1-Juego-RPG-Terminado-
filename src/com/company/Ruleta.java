@@ -4,7 +4,6 @@ import java.util.Scanner;
 public class Ruleta {
     String ANSI_RESET = "\u001B[0m";
     String ANSI_BLANCO_SUBRAYADO = "\033[1;47;30m";
-    int numero;
 
     public void Ruleta(){
         String ANSI_RESET = "\u001B[0m";
@@ -19,6 +18,7 @@ public class Ruleta {
         double oro= usuario.getgoro();
         int ruleta,Ciclo;
 
+        //Inicio
         System.out.println("\n\n\t\t\t\t\t\t"+ANSI_BLANCO_NEGRITA+"Bienvenido al videojuego de la ruleta"+ANSI_RESET);
         System.out.print("Cantidad de oro Actual= "+usuario.getgoro());
         System.out.println("\t\tCantidad de gemas= "+usuario.getgemas());
@@ -26,6 +26,7 @@ public class Ruleta {
         System.out.println("¿Te sientes con suerte?");
         System.out.println("1)Si");
         System.out.println("2)No");
+        System.out.print(ANSI_BLANCO_SUBRAYADO + "Ingrese su elección:" + ANSI_RESET + " ");
         do {
             System.out.print(ANSI_BLANCO_SUBRAYADO+"Ingrese su opción:"+ANSI_RESET+" ");
             Scanner Ruleta = new Scanner(System.in);
@@ -40,6 +41,7 @@ public class Ruleta {
                         System.out.println("Oro actual= "+usuario.getgoro());
                     double random = Math.random();// generamos un numero al azar entre 0 y 1
 
+                        //Establezco las propabilidades tomando en base a 1 como uno 100%
                     if (random < 0.1){// el 10% de las veces
                         System.out.println(ANSI_GREEN+  "\nTe ganaste 40 gemas"+ ANSI_RESET);
                         usuario.setgemas(gemas+40);
@@ -93,25 +95,28 @@ public class Ruleta {
                             if(gemas>=5)
                                 Ruleta();
                             else
+                                //Si el usuario no tiene las gemas necesarias para lanzar la ruleta es regresasdo al menu principal
                                 System.out.println("No posee la cantidad de gemas necesarias para jugar");
                             System.out.println(ANSI_RED+ "\n\t\t\t\t\t\tRegresaremos al menú" + ANSI_RESET);
                             System.out.println("\t\t\tJUEGO FINALIZADO \t\t\tOro="+usuario.getgoro()+" Gemas="+usuario.getgemas());
-                                Practica1 Menu= new Practica1();
+                            JUEGOEJECUTABLE Menu= new JUEGOEJECUTABLE();
                                 Menu.menu();
                             break;
                         case 2:
+                            //El usuario dicide ser regresasdo al menu principal
                             System.out.println(ANSI_RED+ "\n\t\t\t\t\t\tRegresaremos al menú" + ANSI_RESET);
                             System.out.println("\t\t\tJUEGO FINALIZADO \t\t\tOro="+usuario.getgoro()+" Gemas="+usuario.getgemas());
-                            Practica1 Menu1= new Practica1();
+                            JUEGOEJECUTABLE Menu1= new JUEGOEJECUTABLE();
                             Menu1.menu();
 
                             break;
                     }
                     break;
                 case 2:
+                    //El usuario no decide jugar y es enviado al menú
                     System.out.println(ANSI_RED+ "\n\t\t\t\t\t\tRegresaremos al menú" + ANSI_RESET);
                     System.out.println("\t\t\tJUEGO FINALIZADO \t\t\tOro="+usuario.getgoro()+" Gemas="+usuario.getgemas());
-                    Practica1 Menu= new Practica1();
+                    JUEGOEJECUTABLE Menu= new JUEGOEJECUTABLE();
                     Menu.menu();
                     break;
         }

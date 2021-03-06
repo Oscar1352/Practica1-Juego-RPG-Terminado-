@@ -2,6 +2,7 @@ package com.company;
 
 public class Calle{
 
+    //EStablezco mis variables y carcaterísticas de mi cadena
     public int posicion;
     public char simbolo;
     public int ancho;
